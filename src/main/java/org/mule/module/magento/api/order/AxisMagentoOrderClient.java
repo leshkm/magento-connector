@@ -192,6 +192,17 @@ public class AxisMagentoOrderClient extends AbstractMagentoClient
         getPort().salesOrderInvoiceCancel(getSessionId(), invoiceId);
     }
 
+    public List<SalesOrderCreditmemoEntity> listOrdersCreditmemos(String filter) throws RemoteException
+    {
+        return Arrays.asList(getPort().salesOrderCreditmemoList(getSessionId(), FiltersParser.parse(filter)));
+    }
+
+    public SalesOrderCreditmemoEntity getOrderCreditmemo(@NotNull String creditmemoId) throws RemoteException
+    {
+        Validate.notNull(creditmemoId);
+        return getPort().salesOrderCreditmemoInfo(getSessionId(), creditmemoId);
+    }
+
     private OrderItemIdQty[] fromMap(Map<Integer, Double> map)
     {
         OrderItemIdQty[] quantities = new OrderItemIdQty[map.size()];

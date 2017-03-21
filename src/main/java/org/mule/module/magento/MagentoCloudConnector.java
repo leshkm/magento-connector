@@ -343,6 +343,20 @@ public class MagentoCloudConnector {
     }
 
     /**
+     * Retrieves order creditmemo information
+     * <p/>
+     * {@sample.xml ../../../doc/magento-connector.xml.sample magento:getOrderCreditmemo}
+     *
+     *
+     * @param creditmemoId the target creditmemoId
+     * @return the creditmemo attributes
+     */
+    @Processor
+    public SalesOrderCreditmemoEntity getOrderCreditmemo(String creditmemoId) {
+        return orderClient.getOrderCreditmemo(creditmemoId);
+    }
+
+    /**
      * Retrieves the order shipment carriers.
      * <p/>
      * {@sample.xml ../../../doc/magento-connector.xml.sample magento:getOrderShipmentCarriers}
@@ -427,6 +441,25 @@ public class MagentoCloudConnector {
     @Processor
     public List<SalesOrderInvoiceEntity> listOrdersInvoices(@org.mule.api.annotations.Query @Optional String filter) {
         return orderClient.listOrdersInvoices(filter);
+    }
+
+    /**
+     * Lists order creditmemos that match the given filtering expression
+     * <p/>
+     * {@sample.xml ../../../doc/magento-connector.xml.sample magento:listOrdersCreditmemos}
+     *
+     *
+     * @param filter optional filtering expression - one or more comma-separated
+     *               unary or binary predicates, one for each filter, in the form
+     *               filterType(attributeName, value), for binary filters or
+     *               filterType(attributeName), for unary filters, where filterType is
+     *               istrue, isfalse or any of the Magento standard filters. Non-numeric
+     *               values need to be escaped using simple quotes.
+     * @return list of string-object maps order attributes
+     */
+    @Processor
+    public List<SalesOrderCreditmemoEntity> listOrdersCreditmemos(@org.mule.api.annotations.Query @Optional String filter) {
+        return orderClient.listOrdersCreditmemos(filter);
     }
 
     /**

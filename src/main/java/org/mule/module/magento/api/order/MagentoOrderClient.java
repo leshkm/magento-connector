@@ -9,6 +9,7 @@
 package org.mule.module.magento.api.order;
 
 import com.magento.api.OrderItemIdQty;
+import com.magento.api.SalesOrderCreditmemoEntity;
 import com.magento.api.SalesOrderInvoiceEntity;
 import com.magento.api.SalesOrderListEntity;
 import com.magento.api.SalesOrderShipmentEntity;
@@ -229,5 +230,23 @@ public interface MagentoOrderClient<ExceptionType extends Exception>
      * @param invoiceId the invoice id
      */
     void cancelOrderInvoice(@NotNull String invoiceId) throws ExceptionType;
+
+    /**
+     * Lists order creditmemos that match the given filtering expression
+     * 
+     * @return list of string-object maps order attributes
+     */
+    @NotNull
+    List<SalesOrderCreditmemoEntity> listOrdersCreditmemos(String filter) throws ExceptionType;
+
+    /**
+     * Retrieves order creditmemo information
+     * 
+     *
+     * @param creditmemoId
+     * @return the invoice attributes
+     */
+    @NotNull
+    SalesOrderCreditmemoEntity getOrderCreditmemo(@NotNull String creditmemoId) throws ExceptionType;
 
 }
